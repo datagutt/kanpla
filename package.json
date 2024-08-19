@@ -1,24 +1,47 @@
 {
   "name": "@datagutt/kanpla",
-  "private": true,
   "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
+  "description": "Kanpla canteena app api",
+  "type": "module",
+  "source": "./src",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/index.js",
-    "build": "tsc"
+    "start": "tsx example.ts",
+    "clean": "rimraf coverage build tmp",
+    "prebuild": "npm run lint",
+    "build": "tsc -p tsconfig.json",
+    "build:watch": "tsc -w -p tsconfig.json",
+    "build:release": "npm run clean && tsc -p tsconfig.release.json",
+    "lint": "eslint . --ext .ts --ext .mts",
+    "test": "jest --coverage --passWithNoTests",
+    "prettier": "prettier --config .prettierrc --write .",
+    "test:watch": "jest --watch --passWithNoTests"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Thomas Lekanger <mail@datagutt.no>",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "MIT",
   "dependencies": {
-    "typescript": "^5.5.4",
     "axios": "^1.7.4",
     "axios-cache-interceptor": "^1",
     "dotenv": "^16.4.5"
   },
   "devDependencies": {
-    "@types/node": "^20"
+    "@types/jest": "~29.5",
+    "@types/node": "~20",
+    "@typescript-eslint/eslint-plugin": "~7.6",
+    "@typescript-eslint/parser": "~7.6",
+    "eslint": "~8.56",
+    "eslint-config-prettier": "~9.1",
+    "eslint-plugin-jest": "~28.2",
+    "jest": "~29.7",
+    "prettier": "~3.2",
+    "rimraf": "~5.0",
+    "ts-jest": "~29.1",
+    "typescript": "^5.5.4",
+    "tsx": "^4.17.0"
   }
 }

@@ -1,2 +1,2 @@
-export * from './kanpla';
-export * from './api-wrapper';
+export * from './kanpla.js';
+export * from './api-wrapper.js';
