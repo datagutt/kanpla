@@ -1,7 +1,7 @@
 {
   "name": "@datagutt/kanpla",
-  "version": "1.0.0",
-  "description": "Kanpla canteena app api",
+  "version": "1.0.1",
+  "description": "Kanpla cantina app api",
   "type": "module",
   "source": "./src",
   "main": "./dist/index.js",
