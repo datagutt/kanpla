@@ -32,12 +32,12 @@ export default class FirebaseAuthenticator {
     };
   }
 
-  isDateInThePast(date: Date) {
+  isDateInThePast(date: Date): boolean {
     const today = new Date();
     return date.getTime() < today.getTime();
   }
 
-  async login() {
+  async login(): Promise<void> {
     const loginData = {
       returnSecureToken: true,
       email: this.credentials.email,

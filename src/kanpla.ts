@@ -1,4 +1,4 @@
-import ApiWrapper from './api-wrapper.js';
+import {ApiWrapper} from './api-wrapper.js';
 import {findDateInArray} from './utils.js';
 
 type KanplaOptions = {
@@ -25,7 +25,7 @@ type MenuData = {
   };
 };
 
-export default class Kanpla {
+export class Kanpla {
   private apiWrapper: ApiWrapper;
   private options: KanplaOptions;
   constructor(options: KanplaOptions) {
@@ -40,6 +40,10 @@ export default class Kanpla {
       LANGUAGE: 'en',
       ...options,
     };
+  }
+
+  async forceRefreshToken(): Promise<boolean> {
+    return Boolean(await this.apiWrapper.getTokenDirectly())
   }
 
   async getFrontend() {

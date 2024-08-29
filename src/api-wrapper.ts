@@ -10,7 +10,7 @@ type ApiWrapperOptions = {
   API_BASE_URL?: string;
 };
 
-export default class ApiWrapper {
+export class ApiWrapper {
   private firebaseAuthenticator: FirebaseAuthenticator;
   private API_BASE_URL: string;
   private instance = setupCache(
@@ -35,6 +35,10 @@ export default class ApiWrapper {
 
   async getPortalToken(): Promise<string> {
     return await this.firebaseAuthenticator.getPortalToken();
+  }
+
+  async getTokenDirectly(): Promise<string> {
+    return await this.firebaseAuthenticator.getTokenDirectly(true);
   }
 
   getUserId(): string {

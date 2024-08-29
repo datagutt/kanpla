@@ -1,4 +1,4 @@
-import Kanpla from './src/kanpla';
+import {Kanpla} from './src/kanpla';
 import dotenv from 'dotenv';
 dotenv.config();
 const kanpla = new Kanpla({
@@ -14,7 +14,7 @@ async function main() {
   const allMenus = await kanpla.getAllMenus();
   ///	console.log(`All menus:`, allMenus)
 
-  const menu = await kanpla.getMenusForToday();
+  const menu = await kanpla.getMenusForDate(new Date('2024-08-21'));
   console.log(`Today's menu:`, menu);
 }
 
