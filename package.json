@@ -1,6 +1,6 @@
 {
   "name": "@datagutt/kanpla",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Kanpla cantina app api",
   "type": "module",
   "source": "./src",
