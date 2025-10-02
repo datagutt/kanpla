@@ -21,6 +21,10 @@ pnpm add @datagutt/kanpla
 yarn add @datagutt/kanpla
 ```
 
+```bash
+bun add @datagutt/kanpla
+```
+
 ## Quick Start
 
 ```typescript
