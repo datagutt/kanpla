@@ -23,6 +23,7 @@
     "dist",
     "README.md"
   ],
+  "pnpm": {},
   "license": "MIT",
   "dependencies": {
     "axios": "^1.12.2",
