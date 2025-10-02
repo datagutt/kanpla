@@ -1,5 +1,5 @@
-import axios, {Method} from 'axios';
-import {setupCache} from 'axios-cache-interceptor';
+import axios, { type Method } from 'axios';
+import { setupCache } from 'axios-cache-interceptor';
 
 import FirebaseAuthenticator from './firebase-authenticator.js';
 
@@ -16,6 +16,7 @@ export class ApiWrapper {
   private instance = setupCache(
     axios.create({
       adapter: 'fetch',
+      withCredentials: true,
     }),
   );
 
@@ -56,12 +57,21 @@ export class ApiWrapper {
   }) {
     const token = await this.getPortalToken();
     const headers = {
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36',
       accept: 'application/json, text/plain, */*',
+      'accept-language':
+        'nb-NO,nb;q=0.9,no;q=0.8,nn;q=0.7,en-US;q=0.6,en;q=0.5',
       authorization: `Bearer ${token}`,
       'content-type': 'application/json',
       'kanpla-app-env': 'PROD',
       'kanpla-auth-provider': 'GAuth',
       'kanpla-debug': 'true',
+      'cache-control': 'no-cache',
+      pragma: 'no-cache',
+      expires: '0',
+      referer: 'https://app.kanpla.dk/app',
+      origin: 'https://app.kanpla.dk',
     };
     const body = JSON.stringify(data);
     return await this.instance({
@@ -69,6 +79,7 @@ export class ApiWrapper {
       method,
       headers,
       data: body,
+      transformRequest: [(d) => d],
     });
   }
 }

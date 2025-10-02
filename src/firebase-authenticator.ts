@@ -16,7 +16,7 @@ export default class FirebaseAuthenticator {
   private expiresIn: Date | null;
   private localId: string | null = null;
   private FIREBASE_API_KEY: string;
-  private credentials: {email: string; password: string} = {
+  private credentials: { email: string; password: string } = {
     email: '',
     password: '',
   };
@@ -52,7 +52,7 @@ export default class FirebaseAuthenticator {
   }
 
   async loginGoogleApis(): Promise<string> {
-    if (this.refreshToken == '') await this.login();
+    if (this.refreshToken === '') await this.login();
 
     const formData = new URLSearchParams();
     formData.append('grant_type', 'refresh_token');
@@ -65,6 +65,8 @@ export default class FirebaseAuthenticator {
     const d = new Date();
     d.setTime(d.getTime() + tokenResponse.data.expiresIn * 500);
     this.expiresIn = d;
+    this.localId = tokenResponse.data.user_id;
+    this.refreshToken = tokenResponse.data.refresh_token;
     return this.accessToken;
   }
 
@@ -75,13 +77,10 @@ export default class FirebaseAuthenticator {
 
   async getPortalToken(): Promise<string> {
     if (
-      this.accessToken == '' ||
+      this.accessToken === '' ||
       this.expiresIn == null ||
       this.isDateInThePast(this.expiresIn)
     ) {
-      console.log(
-        `Token expired or doesnt exist. Access Token: ${this.accessToken}, Current Expiration Date: ${this.expiresIn}`,
-      );
       this.refreshToken = '';
       return await this.loginGoogleApis();
     } else {

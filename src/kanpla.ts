@@ -1,12 +1,11 @@
-import {ApiWrapper} from './api-wrapper.js';
-import {findDateInArray} from './utils.js';
+import { ApiWrapper } from './api-wrapper.js';
+import { findDateInArray } from './utils.js';
 
 type KanplaOptions = {
   FIREBASE_API_KEY: string;
   FIREBASE_USERNAME: string;
   FIREBASE_PASSWORD: string;
   API_BASE_URL?: string;
-  SUPPLIER: string;
   MODULE_ID: string;
   LANGUAGE?: string;
 };
@@ -43,20 +42,19 @@ export class Kanpla {
   }
 
   async forceRefreshToken(): Promise<boolean> {
-    return Boolean(await this.apiWrapper.getTokenDirectly())
+    return Boolean(await this.apiWrapper.getTokenDirectly());
   }
 
   async getFrontend() {
+    await this.apiWrapper.getPortalToken();
     const userId = this.apiWrapper.getUserId();
-    const {data} = await this.apiWrapper.makeApiCall({
+    const { data } = await this.apiWrapper.makeApiCall({
       path: 'load/frontend',
       method: 'POST',
       data: {
         userId,
-        url: this.options.SUPPLIER,
-        _reloader: 0,
+        url: 'app',
         language: this.options.LANGUAGE,
-        path: 'load/frontend',
       },
     });
 
@@ -81,7 +79,7 @@ export class Kanpla {
     if (!data) {
       return null;
     }
-    const todaysMenus = data.map((menu: {dates?: string[]}) => {
+    const todaysMenus = data.map((menu: { dates?: string[] }) => {
       const date = findDateInArray(
         Object.keys(menu?.dates ?? []).map(Number),
         menuDate,
