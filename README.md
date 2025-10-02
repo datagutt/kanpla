@@ -31,7 +31,7 @@ const kanpla = new Kanpla({
   FIREBASE_USERNAME: 'your-username',
   FIREBASE_PASSWORD: 'your-password',
   MODULE_ID: 'your-module-id',
-  LANGUAGE: 'no',
+  LANGUAGE: 'nb',
 });
 
 const menu = await kanpla.getMenusForToday();
@@ -59,7 +59,7 @@ MODULE_ID=your-module-id
 | `FIREBASE_USERNAME` | string | Yes      | -       | Your Kanpla account username           |
 | `FIREBASE_PASSWORD` | string | Yes      | -       | Your Kanpla account password           |
 | `MODULE_ID`         | string | Yes      | -       | The module/location ID for the cantina |
-| `LANGUAGE`          | string | No       | `'en'`  | Language code (e.g., `'no'`, `'en'`)   |
+| `LANGUAGE`          | string | No       | `'en'`  | Language code (e.g., `'nb'`, `'en'`)   |
 | `API_BASE_URL`      | string | No       | -       | Custom API base URL (optional)         |
 
 ## API Methods
@@ -150,7 +150,7 @@ const kanpla = new Kanpla({
   FIREBASE_USERNAME: process.env.FIREBASE_USERNAME as string,
   FIREBASE_PASSWORD: process.env.FIREBASE_PASSWORD as string,
   MODULE_ID: process.env.MODULE_ID as string,
-  LANGUAGE: 'no',
+  LANGUAGE: 'nb',
 });
 
 async function main() {
